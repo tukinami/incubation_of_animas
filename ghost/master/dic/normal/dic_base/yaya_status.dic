@@ -1,0 +1,17 @@
+#define PHASE_02_AITALK_COUNT 10
+#define PHASE_03_AITALK_COUNT 20
+
+Status.is_cleared_phase_term
+{
+    _target_phase = TOINT(_argv[0])
+
+    _current_phase = 1
+    if aitalk_count >= PHASE_02_AITALK_COUNT {
+        _current_phase = 2
+    }
+    if aitalk_count >= PHASE_03_AITALK_COUNT {
+        _current_phase = 3
+    }
+
+    _target_phase <= _current_phase
+}

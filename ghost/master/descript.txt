@@ -1,0 +1,12 @@
+charset,UTF-8
+type,ghost
+
+name,孵化する魂
+craftman,tukinami seika
+craftmanw,月波 清火
+sakura.name,ジェイソン・クロウ
+kero.name,あなた
+craftmanurl,https://github.com/tukinami/incubation_of_animas
+homeurl,https://raw.githubusercontent.com/tukinami/incubation_of_animas/main/
+
+shiori,yaya.dll

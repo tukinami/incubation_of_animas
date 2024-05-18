@@ -1,0 +1,19 @@
+// ghost
+// --------------------------------------------------
+// savedata
+ghost/master/yaya_variable.cfg,nonar,noupdate
+ghost/master/profile/,nonar,noupdate
+ghost/master/ssp_shiori_log.txt,nonar,noupdate
+ghost/master/yaya_ssp_debug.log,nonar,noupdate
+ghost/master/var/,nonar,noupdate
+
+// for debug
+ghost/master/dic/normal/yaya_debug.dic,nonar,noupdate
+
+
+// shell
+// --------------------------------------------------
+// savedata
+shell/master/profile/,nonar,noupdate
+
+developer_options.txt,nonar,noupdate

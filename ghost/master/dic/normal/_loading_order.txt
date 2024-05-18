@@ -1,0 +1,9 @@
+dic, yaya_tmpl_util.dic
+
+dicdir, dic_base
+dicdir, dic_event
+dicdir, dic_communicate
+dicdir, dic_aitalk
+dicdir, dic_etc
+
+dicif, yaya_debug.dic

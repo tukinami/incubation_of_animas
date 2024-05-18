@@ -1,0 +1,178 @@
+// ******************************************************************************
+// YAYA　ゴーストテンプレート
+// コミュニケート辞書
+// ******************************************************************************
+
+// ******************************************************************************
+// こちらから話しかける
+// ******************************************************************************
+
+// この関数は現状メニューから呼ばれます
+StartCommunicate
+{
+    // 以下の関数は、隣に立っているゴーストを探して、
+    // TalkTo_??? 関数を呼び出すものです。誰も居なければランダムトークをします。
+    // yaya_tmpl_utilにあります。
+    AYATEMPLATE.ExecuteTalkToTalk
+}
+
+// その他の人に話しかける
+TalkToOther
+{
+    _escaped_name = SHIORI3FW.EscapeAllTags(res_reference0)
+    "\u\s[10]\h\s[124]こんにちは～、\w5%(_escaped_name)さん。\w9\nこちら「ジェイソン・クロウ探偵事務所」で～す。\e"
+}
+
+TalkToNobody
+{
+    '\u\s[10]\h\s[114]…\w5…\w5誰もいないが？？\e'
+}
+
+// ******************************************************************************
+// 話しかけられたので返事する
+// ******************************************************************************
+
+// ------------------------------------------------------------------------------
+// OnCommunicateイベント
+// ------------------------------------------------------------------------------
+OnCommunicate
+{
+    if reference[0] == "user" || reference[0] == "User" {
+        // ---- ユーザーからの話しかけ
+        ReplyToUser
+    }
+    else {
+        // ---- ゴーストからの話しかけ
+        // 以下の関数は、ReplyTo_??? 関数を呼び出すものです。
+        // yaya_tmpl_utilにあります。
+        AYATEMPLATE.ExecuteReplyToTalk(reference[0])
+    }
+}
+
+// ------------------------------------------------------------------------------
+// ユーザーからの話しかけ
+// ------------------------------------------------------------------------------
+ReplyToUser
+{
+    TalkToUser
+}
+
+// ------------------------------------------------------------------------------
+// ユーザーへの返事（名前覚え以外）
+// ------------------------------------------------------------------------------
+TalkToUser
+{
+    '\u\s[10]'
+    --
+    _funcs = GETFUNCLIST('TalkToUser.')
+
+    _temp = ''
+    foreach _funcs; _func {
+        _words_raw = REPLACE(_func, 'TalkToUser.', '')
+        _words = SPLIT(_words_raw, '_')
+
+        _param = 0
+        foreach _words; _word {
+            if _word _in_ reference[1] {
+                _param++
+            }
+        }
+
+        if _param == ARRAYSIZE(_words) {
+            _temp = EVAL(_func)
+            if _temp != '' {
+                break
+            }
+        }
+    }
+
+    if _temp != '' {
+        _temp
+    }
+    else {
+        '\0\s[103]？\w9今何て？'
+    }
+    --
+    On_Communicate.footer
+}
+
+On_Communicate.footer
+{
+    AYATEMPLATE.MenuItem('会話メニューヘ', 'On_Communication.menu.main', 150)
+    --
+    AYATEMPLATE.MenuItem('メインメニューへ', 'On_Communicate.return_menu')
+    --
+    AYATEMPLATE.MenuItem('閉じる', 'On_Communicate.close')
+    --
+    '\e'
+}
+
+On_Communicate.return_menu
+{
+    '\![close,communicatebox]'
+    --
+    OpenMenu
+}
+
+On_Communicate.close
+{
+    '\![close,communicatebox]'
+}
+
+// ------------------------------------------------------------------------------
+// ゴーストからの話しかけ
+// ------------------------------------------------------------------------------
+
+// その他の人から話しかけられた
+ReplyToOther
+{
+    SHIORI3FW.RegisterTempVar('communicate_target_ghost')
+    _greeting = ''
+    _greeting_ex = ''
+
+    if RE_MATCH(reference[1], '.*(おはよう|オハヨウ|お早う).*') > 0 {
+        _greeting = 'おはよう'
+        if '朝' !_in_ Time.hour.to_slot {
+            _greeting_ex = '\w9\w9\n\s[103]…\w5…\w5朝じゃないが？'
+        }
+    }
+    elseif RE_MATCH(reference[1], '.*(こんにち(は|わ)|(今日(は|わ|和))|(コンニチ(ワ|ハ))).*') > 0 {
+        _greeting = 'こんにちは'
+    }
+    elseif RE_MATCH(reference[1], '.*(こんちは|コンチワ).*') > 0 {
+        _greeting = 'こんにちは'
+    }
+    elseif RE_MATCH(reference[1], '.*(こんばん(は|わ)|(今晩(は|わ|和))|(コンバン(ワ|ハ))).*') > 0 {
+        _greeting = 'こんばんは'
+        if '夜' !_in_ Time.hour.to_slot {
+            _greeting_ex = '\w9\w9\n\s[103]…\w5…\w5夜じゃないが？'
+        }
+    }
+    elseif RE_MATCH(reference[1], '.*(ハロー|Hello|hello|HELLO|Ｈｅｌｌｏ|ｈｅｌｌｏ|ＨＥＬＬＯ).*') > 0 {
+        _greeting = 'こんにちは'
+    }
+    elseif RE_MATCH(reference[1], '.*(どうも).*') > 0 {
+        // とりあえず汎用
+        _greeting = 'こんにちは'
+    }
+
+    '\u\s[10]'
+    --
+    if STRLEN(_greeting) != 0 {
+        res_reference[0] = reference[0]
+
+        if communicate_target_ghost == reference[0] {
+            communicate_target_ghost = ''
+            '\h\s[105]ご丁寧にどうも。'
+        }
+        else {
+            communicate_target_ghost = reference[0]
+            "\h\s[100]おぅ、\w5%(_greeting)、%(SHIORI3FW.EscapeAllTags(reference[0]))。%(_greeting_ex)"
+        }
+    }
+    else {
+        '\h\s[104]？\w9今何て？'
+    }
+    --
+    '\w9\w9\e'
+}

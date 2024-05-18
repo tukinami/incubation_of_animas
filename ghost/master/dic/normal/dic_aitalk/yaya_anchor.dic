@@ -1,0 +1,88 @@
+On_Anchor.list
+{
+    SHIORI3FW.RegisterTempVar('anchor_callback')
+    anchor_callback = 'On_Anchor.list.callback'
+
+    _funcs = GETFUNCLIST('Anchor.body.')
+    _funcs = ASORT('string,ascending', _funcs)
+    _body = ''
+
+    // TODO: 量が多くなったらこちらにする。
+    // _len = ARRAYSIZE(_funcs)
+    // for _i = 0; _i < _len; _i++ {
+    // if EVAL(_funcs[_i]) != '' {
+    // _name = RE_REPLACE(_funcs[_i], 'Anchor.body.[0-9]+.', '')
+    // _name = SHIORI3FW.MakeJustText(_name, 21)
+    // _anchor = "\![*]\_a[%(_funcs[_i])]%(_name)\_a"
+    // _body += MenuItem.half.lf(_anchor, _i, _len)
+    // }
+    // else {
+    // _body += MenuItem.hide_choice.half(_i, _len)
+    // }
+    // }
+
+    foreach _funcs; _func {
+        if EVAL(_func) != '' {
+            _name = RE_REPLACE(_func, 'Anchor.body.[0-9]+.', '')
+            _name = SHIORI3FW.MakeJustText(_name, 42)
+            _body += "\![*]\_a[%(_func)]%(_name)\_a\n"
+        }
+        else
+        {
+            _body += MenuItem.hide_choice + '\n'
+        }
+    }
+
+    '\u\s[10]\h\_q'
+    --
+    '\n\n[half]'
+    --
+    _body
+    --
+    On_Anchor.list.footer
+    --
+    '\_q'
+    --
+    '\_l[0,0]'
+    --
+    On_Anchor.list.header
+    --
+    '\e'
+}
+
+On_Anchor.list.header
+{
+    '\h\s[100]言っておくが、\w5教えられることは限られてるからな。'
+}
+
+On_Anchor.list.footer
+{
+    AYATEMPLATE.MenuItem('メニューに戻る', 'On_Anchor.list.back_to_menu', 50)
+    --
+    AYATEMPLATE.MenuItem('閉じる', 'On_Anchor.list.close')
+}
+
+On_Anchor.list.back_to_menu
+{
+    anchor_callback = ''
+    OpenMenu
+}
+
+On_Anchor.list.close
+{
+    anchor_callback = ''
+}
+
+On_Anchor.list.callback
+{
+    anchor_callback = 'On_Anchor.list.callback'
+
+    On_Anchor.list
+}
+
+Anchor.header
+{
+    '\u\s[10]'
+    --
+    "\0\_q【\f[bold,true]%(_argv[0])\f[bold,default]】\n\n[half]\_q"
+}

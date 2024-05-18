@@ -1,0 +1,5 @@
+charset,Shift_JIS
+type,ghost
+
+name,õzâªÇ∑ÇÈç∞
+directory,incubation_of_animas

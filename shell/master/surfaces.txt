@@ -1,0 +1,249 @@
+// ===================================================================
+// 基礎設定
+// ===================================================================
+charset,UTF-8
+
+descript
+{
+version,1
+}
+
+// ===================================================================
+// ベース
+// ===================================================================
+surface0-9,25,100-126,200-226
+{
+element0,base,surface00000.png,0,0
+
+collisionex0,Head,region,collision/collision_base.png,255,0,0
+collisionex1,Shoulder,region,collision/collision_base.png,255,255,0
+collisionex2,Tie,region,collision/collision_base.png,0,255,255
+
+animation200.interval,runonce
+animation200.pattern0,overlay,6000,0,0,0
+}
+
+// ===================================================================
+// ポーズ
+// ===================================================================
+// 通常(腕組み)
+surface.append0-9,25,100-199
+{
+element100,overlay,pose/pose_both_akimbo.png,0,0
+
+collisionex3,Hand,region,collision/collision_pose_both_akimbo.png,0,255,0
+}
+
+// 斧を持つ
+surface.append200-299
+{
+element100,overlay,pose/pose_arm-r_normal.png,0,0
+element101,overlay,pose/pose_arm-l_hold-axe.png,0,0
+
+collisionex3,Hand,region,collision/collision_pose_arm-r_normal.png,0,255,0
+collisionex4,Hand,region,collision/collision_pose_arm-l_hold-axe.png,0,255,0
+
+}
+
+// ===================================================================
+// 表情
+// ===================================================================
+// 目
+// -------------------------------------------------------------------
+// 通常
+surface.append0,5,7,100,105,107,110,111,112,114,200,205,207,210,211,212,214
+{
+element500,overlayfast,eye\eye_normal_normal.png,0,0
+
+animation100.interval,rarely
+animation100.option,shared-index
+animation100.pattern0,overlay,-1,0,0,0
+animation100.pattern1,overlay,6501,80,0,0
+animation100.pattern2,overlay,6506,80,0,0
+animation100.pattern3,overlay,6501,80,0,0
+animation100.pattern4,overlay,-1,80,0,0
+}
+
+// 余所見
+surface.append1,3,101,103,120,123,201,203,220,223
+{
+element500,overlayfast,eye\eye_lookaway_normal.png,0,0
+
+animation100.interval,rarely
+animation100.option,shared-index
+animation100.pattern0,overlay,-1,0,0,0
+animation100.pattern1,overlay,6503,80,0,0
+animation100.pattern2,overlay,6506,80,0,0
+animation100.pattern3,overlay,6503,80,0,0
+animation100.pattern4,overlay,-1,80,0,0
+}
+
+// 驚き
+surface.append2,9,102,109,118,119,202,209,218,219
+{
+element500,overlayfast,eye\eye_surprise_normal.png,0,0
+
+animation100.interval,rarely
+animation100.option,shared-index
+animation100.pattern0,overlay,-1,0,0,0
+animation100.pattern1,overlay,6505,80,0,0
+animation100.pattern2,overlay,6506,80,0,0
+animation100.pattern3,overlay,6505,80,0,0
+animation100.pattern4,overlay,-1,80,0,0
+}
+
+// 半目(通常)
+surface.append8,108,113,208,213
+{
+element500,overlayfast,eye\eye_normal_half.png,0,0
+
+animation100.interval,rarely
+animation100.option,shared-index
+animation100.pattern0,overlay,-1,0,0,0
+animation100.pattern1,overlay,6501,80,0,0
+animation100.pattern2,overlay,6506,80,0,0
+animation100.pattern3,overlay,6501,80,0,0
+animation100.pattern4,overlay,-1,40,0,0
+}
+
+// 閉じ(通常)
+surface.append4,6,25,104,106,115,121,122,124,125,204,206,215,221,222,224,225
+{
+element500,overlayfast,eye\eye_close_normal.png,0,0
+}
+
+// 閉じ(微笑)
+surface.append116,117,126,216,217,226
+{
+element500,overlayfast,eye\eye_close_smile.png,0,0
+}
+
+// 眉
+// -------------------------------------------------------------------
+// 通常
+surface.append0,6,8,100,106,108,122,123,200,206,208,222,223
+{
+element600,overlayfast,eyeblow\eyeblow_normal.png,0,0
+}
+
+// 喜び
+surface.append2,5,25,102,105,110,111,116,117,118,119,124,125,202,205,210,211,216,217,218,219,224,225
+{
+element600,overlayfast,eyeblow\eyeblow_fun.png,0,0
+}
+
+// 悲しみ
+surface.append1,3,4,9,101,103,104,109,114,115,120,121,126,201,203,204,209,214,215,220,221,226
+{
+element600,overlayfast,eyeblow\eyeblow_sad.png,0,0
+}
+
+// 怒り
+surface.append7,107,112,113,207,212,213
+{
+element600,overlayfast,eyeblow\eyeblow_angry.png,0,0
+}
+
+// 口
+// -------------------------------------------------------------------
+// 通常
+surface.append0,6,100,106,123,200,206,223
+{
+element700,overlayfast,mouth\mouth_normal.png,0,0
+}
+
+// 悲しみ
+surface.append3,7,103,107,114,115,203,207,214,215
+{
+element700,overlayfast,mouth\mouth_sad.png,0,0
+}
+
+// 微笑
+surface.append1,5,8,101,105,108,110,116,125,126,201,205,208,210,216,225,226
+{
+element700,overlayfast,mouth\mouth_smile.png,0,0
+}
+
+// 半開き
+surface.append4,25,104,112,118,120,122,124,204,212,218,220,222,224
+{
+element700,overlayfast,mouth\mouth_half.png,0,0
+}
+
+// 大口
+surface.append9,109,113,119,209,213,219
+{
+element700,overlayfast,mouth\mouth_big.png,0,0
+}
+
+// 笑い
+surface.append111,117,211,217
+{
+element700,overlayfast,mouth\mouth_laugh.png,0,0
+}
+
+// いー
+surface.append2,102,121,202,221
+{
+element700,overlayfast,mouth\mouth_i.png,0,0
+}
+
+// ===================================================================
+// パーツ
+// ===================================================================
+// 髪
+surface6000
+{
+element0,base,hair.png,0,0
+}
+
+// 目
+// -------------------------------------------------------------------
+// 通常
+surface6500
+{
+element0,base,eye\eye_normal_normal.png,0,0
+}
+
+// 通常(半)
+surface6501
+{
+element0,base,eye\eye_normal_half.png,0,0
+}
+
+// 余所見
+surface6502
+{
+element0,base,eye\eye_lookaway_normal.png,0,0
+}
+
+// 余所見(半)
+surface6503
+{
+element0,base,eye\eye_lookaway_half.png,0,0
+}
+
+// 驚き
+surface6504
+{
+element0,base,eye\eye_surprise_normal.png,0,0
+}
+
+// 驚き(半)
+surface6505
+{
+element0,base,eye\eye_surprise_half.png,0,0
+}
+
+// 閉じ(通常)
+surface6506
+{
+element0,base,eye\eye_close_normal.png,0,0
+}
+
+// ===================================================================
+// p[2]以降
+// ===================================================================
+surface3000
+{
+}

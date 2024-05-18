@@ -1,0 +1,45 @@
+// ******************************************************************************
+// YAYA　ゴーストテンプレート
+// トーク辞書
+// ******************************************************************************
+
+// ******************************************************************************
+// ランダムトーク
+// ******************************************************************************
+RandomTalk
+{
+    aitalk_count++
+
+    SHIORI3FW.RegisterTempVar('anchor_callback')
+    anchor_callback = ''
+
+    TOSTR(EVAL(CHR(0x22) + RandomTalkEx() + CHR(0x22)))
+}
+
+// ------------------------------------------------------------------------------
+// ランダムトーク本体：この中にランダムトークを記載してください
+// ここのみ常に ' ' で括って書いてください。
+// 上のRandomTalkの中身で%( )を展開していますので、" "を使わなくてもOKです。
+// 高速化対策
+// ------------------------------------------------------------------------------
+RandomTalkEx : nonoverlap
+{
+    parallel RandomTalkEx.talks
+}
+
+RandomTalkEx.talks : array
+{
+    _talks = Talk.default
+
+    if Status.is_cleared_phase_term(1) {
+        _talks ,= Talk.phase01
+    }
+    if Status.is_cleared_phase_term(2) {
+        _talks ,= Talk.phase02
+    }
+    if Status.is_cleared_phase_term(3) {
+        _talks ,= Talk.phase03
+    }
+
+    _talks
+}

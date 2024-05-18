@@ -1,0 +1,109 @@
+#define MENUITEM_HALF_LENGTH 21
+
+// ===================================================================
+// 選択肢関連
+// ===================================================================
+On_balloon_tooltip
+{
+    if ISFUNC("BalloonTooltip_%(reference[1])") {
+        EVAL("BalloonTooltip_%(reference[1])")
+    }
+    else {
+        if RE_MATCH(reference[1], '(http|https)://.+') {
+            "%(reference[1])"
+        }
+    }
+}
+
+MenuItem.half
+{
+    _n = _argc
+    _param = (IARRAY)
+    if _n >= 3 {
+        if GETTYPE(_argv[_n - 1]) == 1 {
+            _param ,= _argv[_n - 1]
+            _n -= 1
+        }
+        if GETTYPE(_argv[_n - 1]) == 1 {
+            _param = (_argv[_n - 1], _param)
+            _n -= 1
+        }
+    }
+    _param ,= ('', '')
+    _index = _param[0]
+    _len = _param[1]
+
+    _res = '\![*]\q['
+    _res += AYATEMPLATE.EscapeText(SHIORI3FW.MakeJustText(_argv[0], MENUITEM_HALF_LENGTH))
+
+    for _i = 1; _i < _n; _i++ {
+        _res += ',' + AYATEMPLATE.EscapeText(_argv[_i])
+    }
+
+    _res += ']'
+    --
+    MenuItem.half.lf(_res, _index, _len)
+}
+
+MenuItem.half.lf
+{
+    _res = _argv[0]
+    _index = TOINT(_argv[1])
+    _len = TOINT(_argv[2])
+
+    if _argv[1] == '' && _argv[2] == '' {
+        _res
+    }
+    if _index % 2 == 1 {
+        ' ' + _res + '\n'
+    }
+    else {
+        _res
+        --
+        if _index == _len - 1 {
+            '\n'
+        }
+    }
+}
+
+MenuItem.hide_choice
+{
+    '\![*]\f[disable]?????\f[default]'
+}
+
+MenuItem.hide_choice.half
+{
+    _res = '\![*]\f[disable]'
+    _res += SHIORI3FW.MakeJustText('?????', MENUITEM_HALF_LENGTH)
+    _res += '\f[default]'
+
+    MenuItem.half.lf(_res, _argv[0], _argv[1])
+}
+
+// ===================================================================
+// 日付・時刻
+// ===================================================================
+Time.hour.to_slot
+{
+    if hour <= 2 {
+        '深夜'
+    }
+    elseif hour <= 5 {
+        '早朝'
+    }
+    elseif hour <= 9 {
+        '朝'
+    }
+    elseif hour <= 14 {
+        '昼'
+    }
+    elseif hour <= 18 {
+        '夕方'
+    }
+    elseif hour <= 22 {
+        '夜'
+    }
+    else {
+        '深夜'
+    }
+}

@@ -1,0 +1,184 @@
+// ******************************************************************************
+// YAYA　ゴーストテンプレート
+// マウス入力関連辞書
+// ******************************************************************************
+
+// ******************************************************************************
+// マウス処理部
+//
+// 以下、実際のトークを記述します。関数名は以下の規則になっています。
+// [種別] + [スコープ] + [部位]
+// 種別は、MouseMove, MouseDoubleClick, MouseWheelUp, MouseWheelDown のどれかです。
+// スコープは、\0,\1,といったスコープ番号です。
+// 部位は、当たり判定のどの部位かを表します。当たり判定の無い場所でのイベントの場合
+// 部位はありません。
+// ******************************************************************************
+
+// ******************************************************************************
+// 撫で反応
+// ******************************************************************************
+MouseMove0Head : nonoverlap_pool
+{
+    res_marker = '頭を撫でる'
+
+    SHIORI3FW.RegisterTempVar('mouse_move_head_param')
+    if mouse_move_head_param == '' {
+        mouse_move_head_param = 0
+    }
+    mouse_move_head_param++
+
+    '\t\*'
+    --
+    '\u\s[10]\h\s[101]…\w5…\w5こんなおっさんの頭撫でて楽しいか？'
+    '\u\s[10]\h\s[104]…\w5…\w5何やってんだお前？'
+    '\u\s[10]\h\s[101]この年になって頭を撫でられるとはな。'
+    '\u\s[10]\h\s[104]どういう風の吹きまわしだ？'
+    '\u\s[10]\h\s[103]労わりたいのは分かるんだが、\w9\n頭を撫でるのは違うだろ。'
+    '\u\s[10]\h\s[115]ガキのときぐらいだぞ、\w9\nこれで喜んだ記憶があるのは。'
+    '\u\s[10]\h\s[114]お前の中で俺はどうなってるんだ？'
+
+    if mouse_move_head_param > 7 {
+        '\u\s[10]\h\s[101]あー、\w5はいはい、\w5どうも。'
+        '\u\s[10]\h\s[104]分かった分かった、\w5はい、\w5嬉しい嬉しい。'
+        '\u\s[10]\h\s[114]これで俺が喜んでも、\w9\s[103]その、\w5困らないか？'
+    }
+    --
+    '\w9\w9\e'
+}
+
+MouseMove0Shoulder : nonoverlap_pool
+{
+    res_marker = '肩を揉む'
+
+    SHIORI3FW.RegisterTempVar('mouse_move_shoulder_param')
+    if mouse_move_shoulder_param == '' {
+        mouse_move_shoulder_param = 0
+    }
+    mouse_move_shoulder_param++
+
+    '\t\*'
+    --
+    '\u\s[10]\h\s[101]肩を揉まれるようなことはしてないがな。'
+    '\u\s[10]\h\s[114]無理して俺を労ろうとしなくていいからな？'
+    '\u\s[10]\h\s[104]客に肩揉ますとは、\w5どういう立場だ、\w5俺。'
+    '\u\s[10]\h\s[101]肩揉みまで…\w5…\w5、\w5気を使わせてるな、\w5すまん。'
+
+    if mouse_move_shoulder_param > 3 {
+        '\u\s[10]\h\s[124]意外と肩こってたみたいだ…\w5…\w5。'
+        '\u\s[10]\h\s[125]おー、\w5なんかそこいいかもしれん。'
+        '\u\s[10]\h\s[125]んー、\w5なんかそこいいな。'
+        --
+        ''
+        ''
+        '\w9\w9\n\s[101]しかし、\w5なんだ、\w5すまんな。'
+        '\w9\w9\n\s[101]ありがたいが、\w5その、\w5申し訳ないな。'
+    }
+    --
+    '\w9\w9\e'
+}
+
+MouseMove0Hand : nonoverlap_pool
+{
+    res_marker = '手を触る'
+
+    SHIORI3FW.RegisterTempVar('mouse_move_hand_param')
+    if mouse_move_hand_param == '' {
+        mouse_move_hand_param = 0
+    }
+    mouse_move_hand_param++
+
+    '\t\*'
+    --
+    '\u\s[10]\h\s[101]おっさんの手を触って、\w5なんか楽しいか？'
+    '\u\s[10]\h\s[126]やめろ、\w5くすぐったいな。'
+    '\u\s[10]\h\s[104]あんまり触ってて楽しい手でもねぇだろうに。'
+    '\u\s[10]\h\s[103]自分の手は、\w5あまり好きじゃねぇんだけどな。'
+    '\u\s[10]\h\s[101]手を触ってて、\w5何かいいことでもあるのか？'
+
+    if mouse_move_hand_param > 4 {
+        '\u\s[10]\h\s[114]…\w5…\w5何回触ってんだ？'
+        '\u\s[10]\h\s[108]そんなに俺の手が好きか？\w9\w9\s[115]\n…\w5…\w5見世物じゃねぇんだぞ？'
+        '\u\s[10]\h\s[120]こんなに手を触られたときって、\w9\nどうすればいいんだろうな？'
+    }
+    --
+    '\w9\w9\e'
+}
+
+MouseMove0Tie : nonoverlap_pool
+{
+    res_marker = 'タイを触る'
+
+    SHIORI3FW.RegisterTempVar('mouse_move_tie_param')
+    if mouse_move_tie_param == '' {
+        mouse_move_tie_param = 0
+    }
+    mouse_move_tie_param++
+
+    '\t\*'
+    --
+    case mouse_move_tie_param {
+    when 0-1 {
+        '\u\s[10]\h\s[118]？\w9タイがずれてたか？\w9\w9\s[-1]\n…\w5…\w5\w9\s[105]これでどうだ？\w9\n教えてくれてありがとな。'
+    }
+    when 2-4 {
+        '\u\s[10]\h\s[114]？\w9タイはもう直しただろ？'
+        '\u\s[10]\h\s[112]…\w5…\w5何してんだ？'
+        '\u\s[10]\h\s[103]何でそんなにタイが気になるんだ？'
+    }
+    others {
+        '\u\s[10]\h\s[121]猫かお前は。'
+        '\u\s[10]\h\s[113]ええい、\w5じゃれつくな！'
+        '\u\s[10]\h\s[114]本当に、\w5何してんだ、\w5お前。'
+        '\u\s[10]\h\s[115]これはオモチャじゃないんだが。'
+        '\u\s[10]\h\s[103]どうしてそんなにタイを触るんだ…\w5…\w5？'
+        '\u\s[10]\h\s[104]何でそんなにベタベタと…\w5…\w5。'
+    }
+    }
+    --
+    '\w9\w9\e'
+}
+
+// ******************************************************************************
+// つつかれ反応
+// ******************************************************************************
+
+// 本体側のつつかれ反応
+MouseDoubleClick0
+{
+    // 顔以外のつつきでメニュー展開
+    OpenMenu
+}
+
+// ******************************************************************************
+// マウス処理部コア
+// AYATEMPLATE.MouseMoveWheelFuncの2番目の数字が「感度」です。
+// 1番目の数字（0か1）は、MoveかWheelかを判別するためのもので、
+// 変更の必要はありません。
+// ******************************************************************************
+
+OnMouseMove
+{
+    AYATEMPLATE.MouseMoveWheelFunc(0, 60, 'MouseMove')
+}
+
+OnMouseWheel
+{
+    _result = ''
+    if TOINT(reference[2]) > 0 {
+        _result = AYATEMPLATE.MouseMoveWheelFunc(1, 4, 'MouseWheelUp')
+    }
+    else {
+        _result = AYATEMPLATE.MouseMoveWheelFunc(1, 4, 'MouseWheelDown')
+    }
+
+    if _result == '' {
+        _result = AYATEMPLATE.MouseMoveWheelFunc(1, 4, 'MouseWheel')
+    }
+
+    _result
+}
+
+OnMouseDoubleClick
+{
+    AYATEMPLATE.MouseEventExec('MouseDoubleClick')
+}

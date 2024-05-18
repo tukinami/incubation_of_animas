@@ -1,0 +1,154 @@
+On_Communication.menu
+{
+    '\![open,communicatebox]'
+    --
+    '\![raise,On_Communication.menu.begin,あいさつ]'
+}
+
+On_Communication.menu.begin
+{
+    SHIORI3FW.RegisterTempVar('communication_menu_current_title')
+    communication_menu_current_title = SHIORI3FW.EscapeAllTags(reference[0])
+
+    On_Communication.menu.main
+}
+
+On_Communication.menu.main
+{
+
+    _titles = ''
+    _titles_tag_len = 0
+    _items = (IARRAY)
+    _communication_lists = GETFUNCLIST('Communication.list.')
+    foreach _communication_lists; _communication_list {
+        _name = RE_REPLACE(_communication_list, '^Communication.list.[0-9]+.', '')
+
+        _title = ''
+        if _titles != '' {
+            _title += ' '
+            _titles_tag_len -= 1
+        }
+        if _name == communication_menu_current_title {
+            _title += "\[%(_name)\]"
+            _titles_tag_len -= 2
+            _items = EVAL(_communication_list)
+        }
+        else {
+            _title += " \q[%(_name),On_Communication.menu.begin,%(_name)] "
+        }
+
+        _titles_tag_len += GETSTRBYTES(_title) - GETSTRBYTES(_name)
+        _titles += _title
+    }
+
+    _res = ''
+    _len = ARRAYSIZE(_items)
+    for _i = 0; _i < _len; _i++ {
+        _name = REPLACE(_items[_i], 'TalkToUser.', '')
+
+        if EVAL(_items[_i]) != '' {
+            _res += MenuItem.half(_name, 'OnCommunicate', 'user', _name, _i, _len)
+        }
+        else {
+            _res += MenuItem.hide_choice.half(_i, _len)
+        }
+    }
+
+    '\0\s[0]\_q'
+    --
+    '\f[underline,true]'
+    --
+    SHIORI3FW.MakeJustText(_titles, 46 + _titles_tag_len)
+    --
+    '\f[underline,default]\n\n[half]'
+    --
+    _res
+    --
+    AYATEMPLATE.MenuItem('メニューに戻る', 'On_Communicate.return_menu')
+    --
+    AYATEMPLATE.MenuItem('閉じる', 'On_Communicate.close')
+    --
+    '\_q\e'
+}
+
+Communication.list.001.あいさつ : array
+{
+    'TalkToUser.こんにちは'
+    'TalkToUser.おはよう'
+    'TalkToUser.こんばんは'
+    'TalkToUser.おやすみ'
+    'TalkToUser.さようなら'
+    'TalkToUser.ジェイソン'
+}
+
+Communication.list.002.自身について : array
+{
+    'TalkToUser.自己紹介'
+    'TalkToUser.名前の由来'
+    'TalkToUser.好きな食べ物'
+    'TalkToUser.嫌いな食べ物'
+}
+
+TalkToUser.こんにちは
+{
+    '\s[10]\h\s[100]おぅ、\w5こんにちは。'
+}
+
+TalkToUser.さようなら : sequential
+{
+    OnClose
+}
+
+TalkToUser.おやすみ
+{
+    '\s[10]\u\s[10]\h\s[118]ん、\w5あ、\w5あぁ、\w5おやすみ？'
+    '\u\s[10]\h\s[115]…\w5…\w5ここで寝るのはいいが、\w9\nそこは客用のソファだから、\w5せめて俺ので寝てくれ。'
+}
+
+TalkToUser.おはよう
+{
+    '\s[10]\h\s[100]おぅ、\w5おはよう。'
+    --
+    if '朝' !_in_ Time.hour.to_slot {
+        '\n\w9\w9\s[103]…\w5…\w5「おはよう」か？'
+    }
+}
+
+TalkToUser.こんばんは
+{
+    '\s[10]\h\s[100]おぅ、\w5こんばんは。'
+    --
+    if '夜' !_in_ Time.hour.to_slot {
+        '\n\w9\w9\s[103]…\w5…\w5「こんばんは」？'
+    }
+}
+
+TalkToUser.ジェイソン
+{
+    '\u\s[10]\h\s[100]ん？\w9何だ？'
+}
+
+TalkToUser.自己紹介
+{
+    '\s[10]\h\s[124]改めて、\w5だな。\w9\w9\s[100]\n名前は「ジェイソン・クロウ」、\w9\n呼ぶときはジェイソンでいい。\w9\w9\s[123]\nなんだかんだで、\w9\n怪物退治をしながら探偵をしている。\w9\s[121]\n…\w5…\w5という怪しい奴なんだぞ、\w5俺は。\w9\w9\s[114]\n悪いこと言わねぇから、\w5離れた方がいいんだが。'
+}
+
+TalkToUser.名前の由来
+{
+    '\u\s[10]\h\s[101]名前の由来、\w5ねぇ。\w9\w9\s[104]\n強くなるように、\w5と願いを込めるのはいいんだが、\w9\nホラー映画の敵役の名前を取るのは、\w9\n正直やめてほしかったな。\w9\w9\s[114]\n一般的な名前でよかったよ、\w5本当に。'
+}
+
+TalkToUser.好物
+{
+    TalkToUser.好きな食べ物
+}
+
+TalkToUser.好きな食べ物
+{
+    '\u\s[10]\h\s[105]好きな食べ物はスシだな。\w9\w9\s[116]\n酢とライスと生魚、\w5なんて組み合わせ、\w9\nどうやったら思いつくんだろうな！\w9\w9\s[124]\nちなみに、\w5一番好きなのはツナ、\w9\n日本語で言えば「マグロ」だ。\w9\w9\s[101]\n…\w5…\w5最近スシ食ってねぇな。'
+}
+
+TalkToUser.嫌いな食べ物
+{
+    '\u\s[10]\h\s[115]嫌い、\w5というか、\w9\n何故存在するのか分からん食べ物ならある。\w9\w9\s[112]\n「揚げバター」だ。\w9\w9\s[103]\nバターに、\w5衣を付けて、\w5油で揚げるヤツ。\w9\w9\s[115]\n油を油で？\w9ってトコが納得いかんよ。'
+}
