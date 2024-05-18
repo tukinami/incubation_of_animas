@@ -28,11 +28,12 @@ file,ghost/master/dic/system/yaya_base/compatible.dic4f8b1e8c8c08dc44e70b1bd4f5
 file,ghost/master/dic/system/yaya_base/config.dicdbe844f321ac694dff0bcbc23afb7792size=2588date=2012-12-21T00:00:00
 file,ghost/master/dic/system/yaya_base/optional.dicff4da728a656a8aa6a38939e654c51f2size=9953date=2012-12-21T00:00:00
 file,ghost/master/dic/system/yaya_base/shiori3.dicac4750d7081a6607ac1c26184677020asize=55020date=2012-12-21T00:00:00
+file,ghost/master/dic/yaya_homeurl.dic1d0258771e70b925834ef5ac604b381bsize=656date=2012-12-21T00:00:00
 file,ghost/master/icon.ico8c5e5f1c5b813f106e58465cd80a97casize=5430date=2012-12-21T00:00:00
 file,ghost/master/system_config.txt3965602fadd8acb2ee46c0310704c3e1size=682date=2012-12-21T00:00:00
 file,ghost/master/yaya.dllfa8bac5d6d7346524317f731dc63803dsize=880640date=2012-12-21T00:00:00
-file,ghost/master/yaya.txtc720df5cb99a1e84891b871c99a712absize=1993date=2012-12-21T00:00:00
-file,ghost/master/yaya_emerg.txtd9ee78e2068ff80d809325bd4fa8228bsize=1055date=2012-12-21T00:00:00
+file,ghost/master/yaya.txta5da22f1e9436a0fd90d90412825d182size=2022date=2012-12-21T00:00:00
+file,ghost/master/yaya_emerg.txt363a97e854b40731b545371823ef4963size=1084date=2012-12-21T00:00:00
 file,install.txt69e1021cda12ce79174f7ffa14526e98size=82date=2012-12-21T00:00:00
 file,readme.txtd6ca6012e8841f9b1b8a20eb32e7c4ccsize=2936date=2012-12-21T00:00:00
 file,shell/master/collision/collision_base.png5adef4b8b623990ab58f46da1ec10d6esize=1287date=2012-12-21T00:00:00
