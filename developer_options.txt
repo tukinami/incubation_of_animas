@@ -1,3 +1,9 @@
+.repository-images/,nonar,noupdate
+.github/,nonar,noupdate
+readme.md,nonar,noupdate
+.gitignore,nonar,noupdate
+md5buildignore.txt,nonar,noupdate
+
 // ghost
 // --------------------------------------------------
 // savedata

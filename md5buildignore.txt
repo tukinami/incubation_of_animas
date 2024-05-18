@@ -24,9 +24,7 @@ XtraStuf.mac/
 /developer_options.txt
 /md5buildignore.txt
 
-/lazy_cats_blue_stone/
-/.repo-images/
+/.repository-images/
 
-/shell/master-l/
 
 *.log
