@@ -66,11 +66,11 @@ file,shell/master/mouth/mouth_smile.pngff289d2a052ce72d6fec05690d52edf0size=81
 file,shell/master/pose/pose_arm-l_hold-axe.png89cbca9538a7c3291ab52de2fefbc1dbsize=15581date=2012-12-21T00:00:00
 file,shell/master/pose/pose_arm-r_normal.png2d1eb8019867872d5fd6030b3fc2a097size=24344date=2012-12-21T00:00:00
 file,shell/master/pose/pose_both_akimbo.png2d87b627319901cb3bf7cd6b22184b3esize=30154date=2012-12-21T00:00:00
-file,shell/master/surface0.apngbc0df08f7e3f3a979757e39578d77bc5size=120115date=2012-12-21T00:00:00
-file,shell/master/surface00000.png53cb8ad5441f78b91850154d919b18ebsize=96929date=2012-12-21T00:00:00
+file,shell/master/surface0.apnga8f0ee72e45cab85b1b3e93cb740c91bsize=120009date=2012-12-21T00:00:00
+file,shell/master/surface00000.png0d752125cb672164e488da833dfbf3efsize=96753date=2012-12-21T00:00:00
 file,shell/master/surface00010.png1f5e8516d5fe51beec5d8718fea7eb3esize=140date=2012-12-21T00:00:00
 file,shell/master/surface03000.png5c0ec6275dd48ea5f653e227bdb39a30size=151463date=2012-12-21T00:00:00
 file,shell/master/surfaces.txt57c3a9e5e2e917025aa315b87d801324size=5869date=2012-12-21T00:00:00
 file,shell/master/surfacetable.txtea7fcd192c025335c1510e9ab83b3d2dsize=1645date=2012-12-21T00:00:00
-file,shell/master/thumbnail.pngfc34e4bc9fe94aa1c8e202bd5aa26dc9size=36307date=2012-12-21T00:00:00
-file,thumbnail.pngfc34e4bc9fe94aa1c8e202bd5aa26dc9size=36307date=2012-12-21T00:00:00
+file,shell/master/thumbnail.png245134794726df446ce8305daa48e858size=36483date=2012-12-21T00:00:00
+file,thumbnail.png245134794726df446ce8305daa48e858size=36483date=2012-12-21T00:00:00
